@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transcription Result | TranscribeFlow</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <a href="{{ url_for('logout') }}" class="logout-link">Logout</a>
+
+    <div class="main-container">
+        
+        <div class="project-header">
+            <h1 class="title">🎙️ TranscribeFlow</h1>
+            <p class="subtitle">Audio to Text Summarization</p>
+        </div>
+
+        <div class="box result-box">
+            <h2>🎙 Transcription Result</h2>
+
+            <h3>📄 Full Transcript</h3>
+            <div class="transcript-container">
+                <p>{{ transcript }}</p>
+            </div>
+
+            <h3>📝 Summary</h3>
+            <div class="transcript-container">
+                <p>{{ summary }}</p>
+            </div>
+
+            <div class="button-group">
+
+                <a href="{{ url_for('download_combined',
+                    transcript_filename=transcript_file,
+                    summary_filename=summary_file) }}">
+                    <button>Download Transcript & Summary</button>
+                </a>
+
+                <a href="{{ url_for('download_json',
+                    transcript_filename=transcript_file,
+                    summary_filename=summary_file) }}">
+                    <button>Download JSON</button>
+                </a>
+
+                {% if source == "upload" %}
+                    <a href="{{ url_for('upload_page') }}">
+                        <button>Upload Another File</button>
+                    </a>
+                {% elif source == "record" %}
+                    <a href="{{ url_for('upload_page') }}">
+                        <button>Record Another Audio</button>
+                    </a>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+<div class="button-group" style="max-width: 500px; margin: 0 auto;"></div>
+</body>
+</html>

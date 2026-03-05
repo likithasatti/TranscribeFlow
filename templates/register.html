@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | TranscribeFlow</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="main-container">
+        <div class="project-header">
+            <h1 class="title">🎙️ TranscribeFlow</h1>
+            <p class="subtitle">Audio to Text Summarization</p>
+        </div>
+
+        <div class="box">
+            <h2>Register</h2>
+
+            <form method="POST">
+                <input type="text" name="username" placeholder="Create Username" required>
+                <input type="password" name="password" placeholder="Create Password" required>
+                <button type="submit">Register</button>
+            </form>
+
+            {% if message %}
+                <p class="error">{{ message }}</p>
+            {% endif %}
+
+            <p class="register-link">
+                Already have an account? 
+                <a href="/">Login here</a>
+            </p>
+        </div>
+    </div>
+
+</body>
+</html>

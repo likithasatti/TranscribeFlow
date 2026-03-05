@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TranscribeFlow | Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="main-container">
+        
+        <a href="/logout" class="logout-link">Logout</a>
+
+        <div class="project-header">
+            <h1 class="title">🎙️ TranscribeFlow</h1>
+            <p class="subtitle">Audio to Text Summarization</p>
+        </div>
+
+        <div class="box">
+            <h2>Upload your audio file</h2>
+            <p style="color: #666; font-size: 14px;">Supported formats: MP3, WAV</p>
+
+            <form action="/upload" method="POST" enctype="multipart/form-data">
+                <input type="file" name="audio" accept=".mp3,.wav" required>
+                <button type="submit">Upload File</button>
+            </form>
+
+            <div class="section-divider"></div> <h3 class="section-title">🎙 Record Your Voice</h3>
+
+            <div class="button-group">
+                <button type="button" id="startBtn">Start Recording</button>
+                <button type="button" id="stopBtn" class="secondary-btn" disabled>Stop Recording</button>
+            </div>
+
+            <p id="status" style="margin-top: 15px; font-weight: bold; color: #667eea;"></p>
+        </div>
+    </div>
+
+<script>
+let mediaRecorder;
+let audioChunks = [];
+
+const startBtn = document.getElementById("startBtn");
+const stopBtn = document.getElementById("stopBtn");
+const status = document.getElementById("status");
+
+startBtn.onclick = async () => {
+    try {
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        mediaRecorder = new MediaRecorder(stream);
+        mediaRecorder.start();
+
+        status.innerText = "🎙 Recording...";
+        startBtn.disabled = true;
+        stopBtn.disabled = false;
+
+        mediaRecorder.ondataavailable = event => {
+            audioChunks.push(event.data);
+        };
+    } catch (err) {
+        status.innerText = "❌ Error: Microphone access denied.";
+    }
+};
+
+stopBtn.onclick = () => {
+    mediaRecorder.stop();
+    status.innerText = "⏳ Processing...";
+
+    startBtn.disabled = false;
+    stopBtn.disabled = true;
+
+    mediaRecorder.onstop = async () => {
+        const audioBlob = new Blob(audioChunks, { type: "audio/wav" });
+        audioChunks = [];
+
+        const formData = new FormData();
+        formData.append("audio", audioBlob, "recorded.wav");
+
+        const response = await fetch("/record", {
+            method: "POST",
+            body: formData
+        });
+
+        const html = await response.text();
+        document.open();
+        document.write(html);
+        document.close();
+    };
+};
+</script>
+
+</body>
+</html>

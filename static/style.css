@@ -1,0 +1,248 @@
+/* General Reset & Background */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #2193b0, #6dd5ed);
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    /* Centers the main container in the middle of the screen */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* Wrapper to stack Title and Box vertically */
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+}
+
+/* Project Header (Outside the box) */
+.project-header {
+    text-align: center;
+    margin-bottom: 30px; /* Space between title and login box */
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+.title {
+    font-size: 42px;
+    font-weight: 800;
+    margin: 0;
+    color: white;
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.subtitle {
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.9);
+    margin-top: 10px;
+    font-weight: 400;
+}
+
+/* Login Card Box */
+.box {
+    width: 100%;
+    max-width: 400px;
+    padding: 40px;
+    background: #ffffff;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+.box h2 {
+    margin-bottom: 25px;
+    color: #333;
+    font-size: 24px;
+}
+
+/* Inputs */
+input {
+    width: 100%;
+    padding: 14px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    outline: none;
+    box-sizing: border-box; /* Prevents input from overflowing */
+    transition: 0.3s;
+    font-size: 16px;
+}
+
+input:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 8px rgba(102, 126, 234, 0.3);
+}
+
+/* Button */
+button {
+    width: 100%;
+    padding: 14px;
+    margin-top: 15px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+/* Links & Error */
+.register-link {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #666;
+}
+
+a {
+    text-decoration: none;
+    color: #667eea;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.error {
+    color: #e74c3c;
+    background: #fdf2f2;
+    padding: 10px;
+    border-radius: 6px;
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .title { font-size: 32px; }
+    .box { padding: 25px; }
+}
+/* Position the logout link at the top right */
+.logout-link {
+    position: absolute;
+    top: 25px;
+    right: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    color: #ffffff;      /* Pure white color */
+    font-size: 16px;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    z-index: 1000;       /* Ensures it stays above other elements */
+}
+
+.logout-link:hover {
+    color: #ffdddd;      /* Slight pinkish tint on hover */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    transform: scale(1.05);
+}
+
+/* Ensure the body can handle absolute positioning inside it */
+body {
+    position: relative; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #2193b0, #6dd5ed);
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* Update the Card Box to be wider */
+.box {
+    width: 90%;
+    max-width: 900px;   /* Increased from 500px to 900px for a wider look */
+    padding: 40px;      /* More padding for a professional feel */
+    background: #ffffff;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.6s ease-in-out;
+    height: auto;       /* Ensures the box grows with content */
+}
+
+/* Update the Result-specific box */
+.result-box {
+    max-width: 1000px;  /* Even wider specifically for the results page */
+}
+
+/* Update the Transcript Container to stop internal scrolling */
+.transcript-container {
+    max-height: none;   /* Removed the 250px limit so all text shows at once */
+    height: auto;       /* Allows container to expand */
+    background: #f4f6fb;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+    text-align: left;
+    font-size: 16px;    /* Slightly larger text for readability */
+    line-height: 1.8;   /* Better spacing between lines */
+    border: 1px solid #ddd;
+    word-wrap: break-word; /* Ensures long words don't break the layout */
+}
+/* This remains the same for Login/Upload */
+.box {
+    width: 90%;
+    max-width: 400px; 
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}  
+/* ONLY for the Result Page */
+.result-box {
+    max-width: 1000px;   /* Makes the box much wider */
+    width: 95%;          /* Takes up more screen space on mobile */
+    height: auto;        /* Allows the white box to grow vertically */
+}
+
+/* Remove scroll limits ONLY inside the result-box */
+.result-box .transcript-container {
+    max-height: none;    /* Removes the 250px scroll limit */
+    height: auto;        /* Expands to show all text */
+    overflow-y: visible; /* Disables the internal scrollbar */
+    padding: 20px;
+    line-height: 1.8;    /* Makes long text easier to read */
+}
+/* Minimize buttons specifically on the Result Page */
+.result-box .button-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Keeps them centered */
+    gap: 15px;               /* Space between buttons */
+    margin-top: 30px;
+}
+
+.result-box button {
+    width: auto;             /* Stops the button from stretching */
+    min-width: 180px;        /* Ensures a consistent minimum size */
+    padding: 12px 25px;      /* Adds horizontal breathing room */
+    font-size: 14px;         /* Slightly smaller font for a cleaner look */
+}
